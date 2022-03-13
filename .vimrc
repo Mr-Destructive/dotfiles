@@ -25,43 +25,16 @@ if has('persistent_undo')         "check if your vim version supports
   set nobk nowb noswf noudf
 endif
 
-function! Comment()
-    let ext = tolower(expand('%:e'))
-    if ext == 'py' 
-              let cmt1 = "'''"
-	      let cmt2 = "'''"   
-    elseif ext == 'cpp' || ext =='java' || ext == 'css' || ext == 'js' || ext == 'c' || ext =='cs' || ext == 'rs' || ext == 'go'
-	      let cmt1 = '/*'
-	      let cmt2 = '*/'
-    elseif ext == 'sh'
-	      let cmt1 = ": '"
-	      let cmt2 = "'"
-    elseif ext == 'html'
-	      let cmt1 = "<!--"
-	      let cmt2 = "-->"
-    elseif ext == 'hs'
-	      let cmt1 = "{-"
-	      let cmt2 = "-}"
-    elseif ext == "rb"
-	      let cmt1 = "=begin"
-	      let cmt2 = "=end"
-    endif
-    exe line("'<")."normal O". cmt1 | exe line("'>")."normal o". cmt2 
-endfunction
-
-function! UnComment()
-    exe line("'<")."normal dd" | exe line("'>")."normal dd"   
-endfunction
-
 function! SoftWrap()
     let s:old_fo = &formatoptions
     let s:old_tw = &textwidth
     set fo=
-    set tw=999999 " works for paragraphs up to 12k lines
+    set tw=999999 
     normal gggqG
     let &fo = s:old_fo
     let &tw = s:old_tw
 endfunction
+
 
 "Custom Key-bindings
 
@@ -85,6 +58,7 @@ nnoremap cf i#include<stdio.h><Esc>oint main(){<Esc>o<Esc>oreturn 0;<Esc>o}<Esc>
 nnoremap cpp :!c++ % -o %:r && %:r<CR>
 nnoremap c, :!gcc % -o %:r && %:r<CR>
 nnoremap py :!python %<cr>
+nnoremap go :!go run %<cr>
 nnoremap sh :!bash %<CR>
 nnoremap cd :cd .. <bar> cd .. <bar> cd d:\meet\Code <CR>
 nnoremap cg :cd .. <bar> cd .. <bar> cd d:\meet\College\SY-SEM-3<CR>
@@ -95,11 +69,17 @@ nnoremap ,j :!javac % && java %:r<CR>
 nnoremap <C-j> ipublic class <ESC>"%pxxxxxa {<ESC>opublic static void main(String args[]){<Esc>o<Esc>o}<Esc>o}<Esc>kki<Tab><Tab>
 nnoremap ,k i---<ESC>olayout: post<ESC>otitle : ""<ESC>osubtitle: ""<ESC>odate: 2021-00-00 15:00:00 +0530<ESC>ocategories: []<ESC>oimage: /assets/img/.png<ESC>o---<ESC>6kt"a
 
-vnoremap ,m :<c-w><c-w><c-w><c-w><c-w>call Comment()<CR>
-vnoremap m, :<c-w><c-w><c-w><c-w><c-w>call UnComment()<CR>
+"vnoremap ,m :<c-w><c-w><c-w><c-w><c-w>call Comment()<CR>
+"vnoremap m, :<c-w><c-w><c-w><c-w><c-w>call UnComment()<CR>
+
+"get date 
+" :pu=strftime('%c')
+"inoremap :jekyll<c-y> <ESC>dd<ESC>:1<CR>O<ESC>i---<ESC>olayout:post<ESC>otitle : ""<ESC>osubtitle: ""<ESC>:pu=strftime('date: %F %T') <ESC>ocategories: []<ESC>oimage: <ESC>o---<Esc>o<ESC>
+"inoremap :markata<c-y> <ESC>dd<ESC>:1<CR>O<ESC>i---<ESC>otemplateKey: log-post<ESC>otitle : ""<ESC>osubtitle: ""<ESC>:r! date "+date: \%Y-\%m-\%d \%H:\%M:\%S" <CR><ESC>otags: []<ESC>o---<Esc>o<ESC>
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'preservim/nerdtree'
@@ -108,7 +88,11 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-scripts/AutoComplPop'
 Plugin 'evanleck/vim-svelte', {'branch': 'main'}
 Plugin 'gabrielelana/vim-markdown'
-
+Plugin 'dart-lang/dart-vim-plugin'
+Plugin 'Mr-Destructive/frontmatter.vim'
+Plugin 'Mr-Destructive/commenter.vim'
+"Plugin 'file:///d:/meet/Code/frontmatter.vim'
+"Plugin 'file:///d:/meet/Code/commenter'
 call vundle#end()            
 filetype plugin indent on
 
