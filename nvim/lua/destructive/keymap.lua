@@ -1,21 +1,12 @@
-local M = {}
+require("destructive.plugins")
+require("destructive.color")
 
-function bind(op, outer_opts)
-    outer_opts = outer_opts or {noremap = true}
-    return function(lhs, rhs, opts)
-        opts = vim.tbl_extend("force",
-            outer_opts,
-            opts or {}
-        )
-        vim.keymap.set(op, lhs, rhs, opts)
-    end
-end
-
-M.nmap = bind("n", {noremap = false})
-M.nnoremap = bind("n")
-M.vnoremap = bind("v")
-M.xnoremap = bind("x")
-M.inoremap = bind("i")
-
-return M
-
+map('n', '<leader>w', ':w<CR>',{noremap = false})
+map('n', '<leader>q', ':q!<CR>',{noremap = false})
+map('n', '<leader>s', ':so %<CR>',{noremap = false})
+map('n', '<leader>ev', ':vsplit $MYVIMRC<CR>',{noremap = false})
+map('n', '<leader>sv', ':w<CR>:so %<CR>:q<CR>',{noremap = false})
+map('n', '<Leader>p', '"+p')
+map('n', '<C-n>', ':NERDTree .<CR>')
+map('n', '<leader>gm', "<cmd>lua require('frontmatter').Frontmatter('add',{'image_url'})<cr>")
+map('n', '<Leader>pv', ':vsplit ~/.config/nvim/lua/destructive/packer.lua<CR>')

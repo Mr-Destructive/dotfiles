@@ -1,3 +1,5 @@
+require("destructive.options")
+
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   use 'tpope/vim-fugitive'
@@ -16,6 +18,7 @@ return require('packer').startup(function()
   use 'tjdevries/colorbuddy.nvim'
   use { 'lalitmee/cobalt2.nvim', requires = 'tjdevries/colorbuddy.nvim' }
   use "EdenEast/nightfox.nvim"
+  use 'tiagofumo/vim-nerdtree-syntax-highlight'
   use 'Mofiqul/dracula.nvim'
   use 'navarasu/onedark.nvim'
   use 'kyazdani42/nvim-web-devicons'
@@ -23,5 +26,6 @@ return require('packer').startup(function()
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
   use 'preservim/nerdtree'
+  use 'Mr-Destructive/frontmatter.vim'
 end)
 

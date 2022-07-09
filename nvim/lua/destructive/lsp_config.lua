@@ -1,5 +1,6 @@
 require("packer")
 vim.opt.completeopt={"menu","menuone","noselect"}
+
  local cmp = require'cmp'
 
   cmp.setup({
@@ -17,7 +18,7 @@ vim.opt.completeopt={"menu","menuone","noselect"}
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), 
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
@@ -38,8 +39,7 @@ vim.opt.completeopt={"menu","menuone","noselect"}
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-
-require("lspconfig").gopls.setup{
+require("lspconfig").pyright.setup{
   capabilities = capabilities,
   on_attach = function()
     vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
@@ -49,7 +49,7 @@ require("lspconfig").gopls.setup{
   end,
 }
 
-require("lspconfig").pyright.setup{
+require("lspconfig").gopls.setup{
   capabilities = capabilities,
   on_attach = function()
     vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
