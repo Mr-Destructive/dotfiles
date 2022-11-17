@@ -27,7 +27,7 @@ function key_mapper(keymaps)
     for _, p in ipairs(rhs_parts) do
       rhs = rhs .. " " .. p
     end
-    vim.keymap.set(mode, lhs, rhs, options)
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
   end
 end
 
