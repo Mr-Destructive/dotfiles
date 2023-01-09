@@ -6,6 +6,17 @@ function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+vim.g.mapleader = ' '
+local set = vim.opt
+set.number = true
+set.tabstop = 4
+set.shiftwidth = 4
+set.softtabstop = 4
+set.expandtab = true
+set.swapfile = false
+set.hlsearch = false
+vim.cmd("let NVIM_TUI_ENABLE_TRUE_COLOR=1")
+
 function key_mapper(keymaps)
   for _, keymap in ipairs(keymaps) do
     local mode = keymap:sub(1,1)
@@ -27,7 +38,7 @@ function key_mapper(keymaps)
     for _, p in ipairs(rhs_parts) do
       rhs = rhs .. " " .. p
     end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+    vim.keymap.set(mode, lhs, rhs, options)
   end
 end
 
@@ -39,12 +50,12 @@ key_mapper({
   'nnoremap go :!go run %<cr>',
   'nnoremap sh :!bash %<CR>'
 })
+vim.cmd("let g:netrw_altv=1")
 
-vim.g.mapleader = ' '
-local set = vim.opt
-set.number = true
-set.tabstop = 2
-set.shiftwidth = 2
-set.softtabstop = 2
-set.expandtab = true
-set.swapfile = false
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = vim.api.nvim_create_augroup("GoFormat", {clear=true}),
+  pattern = "*.go",
+  callback = function()
+    vim.cmd("lua vim.lsp.buf.formatting()")
+  end,
+})
