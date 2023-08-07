@@ -38,6 +38,7 @@ function key_mapper(keymaps)
     for _, p in ipairs(rhs_parts) do
       rhs = rhs .. " " .. p
     end
+    --print("vim.keymap.set(".."\'"..mode.."\'"..", ".."\'"..lhs.."\'"..", ".."\'"..rhs.."\'"..", "..vim.inspect(options)..")")
     vim.keymap.set(mode, lhs, rhs, options)
   end
 end
@@ -56,6 +57,13 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   group = vim.api.nvim_create_augroup("GoFormat", {clear=true}),
   pattern = "*.go",
   callback = function()
-    vim.cmd("lua vim.lsp.buf.formatting()")
+    vim.cmd("lua vim.lsp.buf.format()")
   end,
 })
+
+vim.opt.colorcolumn = "80"
+vim.opt.scrolloff = 8
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+

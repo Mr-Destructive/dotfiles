@@ -1,0 +1,17 @@
+{
+  "name": "Ubuntu Dev Container",
+  "image": "ubuntu:22.04",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "runArgs": ["--privileged"],
+  "postCreateCommand": "docker exec -it ${containerId} /bin/bash",
+  "postStartCommand": "docker exec -it ${containerId} /bin/bash",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
+  "workspaceFolder": "/workspace",
+  "containerEnv": {
+    "DEBIAN_FRONTEND": "noninteractive"
+  },
+  "dockerFile": "Dockerfile",
+  "overrideCommand": false
+}

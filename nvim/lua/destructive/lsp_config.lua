@@ -1,8 +1,21 @@
 require("packer")
+require("mason").setup()
+require'lspconfig'.marksman.setup{}
+require'lspconfig'.svelte.setup{}
+require("autoclose").setup()
 vim.opt.completeopt={"menu","menuone","noselect"}
 
 local cmp = require'cmp'
+local lua_lsp = require('lspconfig')
 local navic = require("nvim-navic")
+
+require("lualine").setup({
+    sections = {
+        lualine_c = {
+            { navic.get_location, cond = function() return navic.is_available() end },
+        }
+    }
+})
 
  cmp.setup({
    snippet = {
@@ -89,6 +102,7 @@ rt.setup({
   },
 })
 
+
 --require("flutter-tools").setup{} 
 --local builtin = require('telescope.builtin')
 --vim.keymap.set('n', 'ff', builtin.find_files, {})
@@ -97,3 +111,13 @@ rt.setup({
 --vim.keymap.set('n', 'fh', builtin.help_tags, {})
 
 --vim.o.winbar = " %{%v:lua.vim.fn.expand('%F')%}  %{%v:lua.require'nvim-navic'.get_location()%}"
+--
+
+vim.o.foldcolumn = '1' -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
+
+require('ufo').setup()
+

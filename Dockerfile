@@ -27,5 +27,4 @@ RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim \
 # Setup starship
 RUN echo eval "$(starship init bash)" >> ~/.bashrc
 
-
- CMD "bash"
+CMD "bash"
