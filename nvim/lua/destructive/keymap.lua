@@ -24,40 +24,40 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 -- comment and uncomment
-require('Comment').setup({
-    padding = true,
-    sticky = true,
-    ignore = nil,
-    toggler = {
-        line = 'gcc',
-        block = 'gbc',
-    },
-    opleader = {
-        line = 'gc',
-        block = 'gb',
-    },
-    extra = {
-        above = 'gcO',
-        below = 'gco',
-        eol = 'gcA',
-    },
-    mappings = {
-        basic = true,
-        extra = true,
-    },
-    pre_hook = nil,
-    post_hook = nil,
-})
+--require('Comment').setup({
+--    padding = true,
+--    sticky = true,
+--    ignore = nil,
+--    toggler = {
+--        line = 'gcc',
+--        block = 'gbc',
+--    },
+--    opleader = {
+--        line = 'gc',
+--        block = 'gb',
+--    },
+--    extra = {
+--        above = 'gcO',
+--        below = 'gco',
+--        eol = 'gcA',
+--    },
+--    mappings = {
+--        basic = true,
+--        extra = true,
+--    },
+--    pre_hook = nil,
+--    post_hook = nil,
+--})
 -- vim.keymap.set("v", "<leader>/", function() require('Comment.api').toggle.linewise.current() end,
 -- { noremap = true, silent = true })
 
-require'FTerm'.setup({
-    border = 'double',
-    dimensions  = {
-        height = 0.5,
-        width = 0.5,
-    },
-})
+--require'FTerm'.setup({
+--    border = 'double',
+--    dimensions  = {
+--        height = 0.5,
+--        width = 0.5,
+--    },
+--})
 
 function RunAppropriateCommand()
     local file_extension = vim.fn.expand('%:e')

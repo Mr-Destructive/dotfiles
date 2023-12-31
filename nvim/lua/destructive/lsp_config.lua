@@ -1,5 +1,5 @@
 require("packer")
-require("mason").setup()
+--require("mason").setup()
 require'lspconfig'.marksman.setup{}
 require'lspconfig'.svelte.setup{}
 require("autoclose").setup()
@@ -8,6 +8,7 @@ vim.opt.completeopt={"menu","menuone","noselect"}
 local cmp = require'cmp'
 local lua_lsp = require('lspconfig')
 local navic = require("nvim-navic")
+
 
 require("lualine").setup({
     sections = {
@@ -120,4 +121,4 @@ vim.o.foldenable = true
 
 
 require('ufo').setup()
-
+require('sg').setup()

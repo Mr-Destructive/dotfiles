@@ -20,7 +20,7 @@ return require("packer").startup(function()
     requires = { "kyazdani42/nvim-web-devicons", opt = true,
     }
   }
-  use {"nvim-telescope/telescope.nvim", tag= "0.1.0",
+  use { "nvim-telescope/telescope.nvim", tag = '0.1.4' ,
       requires = { {"nvim-lua/plenary.nvim"} }
   }
   use "tjdevries/colorbuddy.nvim"
@@ -31,16 +31,10 @@ return require("packer").startup(function()
   --use "Mr-Destructive/dj.vim"
   use "Mr-Destructive/frontmatter.vim"
   use "Mr-Destructive/markrunner.nvim"
-  use "/home/meet/code/plugins/dj.vim"
+  --use "/home/meet/code/plugins/dj.vim"
   --use "/home/meet/code/plugins/markrunner.nvim"
 
   use "simrat39/rust-tools.nvim"
-  use {
-    "folke/twilight.nvim",
-    config = function()
-      require("twilight").setup {}
-    end
-  }
   use {
     "nvim-tree/nvim-tree.lua",
     requires = {
@@ -66,12 +60,12 @@ require("lualine").setup{
   }
 }
 
-require("catppuccin").setup({
-    integrations ={
-        nvimtree = true,
-    }
-})
-
+--require("catppuccin").setup({
+--    integrations ={
+--        nvimtree = true,
+--    }
+--})
+--
 use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" }
 
 use { "williamboman/mason.nvim" }
@@ -79,9 +73,9 @@ use { "lewis6991/gitsigns.nvim" }
 use { "m4xshen/autoclose.nvim" }
 use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 use {"nvim-tree/nvim-web-devicons", tag="nerd-v2-compat",}
-
--- codeium
-
+--
+---- codeium
+--
 use {
   'Exafunction/codeium.vim',
   config = function ()
@@ -89,19 +83,26 @@ use {
     vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
     vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
     vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-  end
+end
 }
-use {
-    'numToStr/Comment.nvim',
-    config = function()
-        require('Comment').setup()
-    end
+use {"David-Kunz/gen.nvim",
+ opts = {
+        model = "llama2",
+        display_mode = "float",
+        debug = true,
+    }
 }
---use { 'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua' }
-
-  use "numToStr/FTerm.nvim"
-
--- locals
-  use {"~/code/plugins/sqlite.nvim" }
+--use {
+--    'numToStr/Comment.nvim',
+--    config = function()
+--        require('Comment').setup()
+--    end
+--}
+    use { 'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua' }
+--
+--  use "numToStr/FTerm.nvim"
+--
+---- locals
+--  use {"~/code/plugins/sqlite.nvim" }
 end)
 
