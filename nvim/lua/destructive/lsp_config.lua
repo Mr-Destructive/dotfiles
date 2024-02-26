@@ -1,8 +1,9 @@
 require("packer")
---require("mason").setup()
+require("mason").setup()
 require'lspconfig'.marksman.setup{}
 require'lspconfig'.svelte.setup{}
 require("autoclose").setup()
+--require'lspconfig'.ltex.setup{}
 vim.opt.completeopt={"menu","menuone","noselect"}
 
 local cmp = require'cmp'

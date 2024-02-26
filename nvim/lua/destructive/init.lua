@@ -2,6 +2,7 @@ require('destructive.keymap')
 require('destructive.lsp_config')
 require('destructive.treesitter')
 require('destructive.filexplorer')
+require('destructive.debugger')
 local M = {}
 
 local augroup = vim.api.nvim_create_augroup('highlight_cmds', {clear = true})

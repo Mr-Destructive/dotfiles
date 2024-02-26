@@ -60,12 +60,20 @@ require("lualine").setup{
   }
 }
 
---require("catppuccin").setup({
---    integrations ={
---        nvimtree = true,
---    }
---})
---
+require("catppuccin").setup({
+    integrations ={
+        nvimtree = true,
+    }
+})
+
+-- debugger
+  use { "mfussenegger/nvim-dap" }
+  use { "theHamsta/nvim-dap-virtual-text" }
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use { "mfussenegger/nvim-dap-python" }
+  use { "leoluz/nvim-dap-go" }
+  use { "nvim-telescope/telescope-dap.nvim" }
+
 use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" }
 
 use { "williamboman/mason.nvim" }
@@ -104,5 +112,10 @@ use {"David-Kunz/gen.nvim",
 --
 ---- locals
 --  use {"~/code/plugins/sqlite.nvim" }
+
+
+--  grammar lsp
+   --use { 'valentjn/ltex-ls'}
+
 end)
 

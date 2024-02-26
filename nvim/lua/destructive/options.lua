@@ -53,13 +53,13 @@ key_mapper({
 })
 vim.cmd("let g:netrw_altv=1")
 
---vim.api.nvim_create_autocmd("BufWritePost", {
---  --group = vim.api.nvim_create_augroup("GoFormat", {clear=true}),
---  pattern = "*.go",
---  callback = function()
---    vim.cmd("lua vim.lsp.buf.format()")
---  end,
---})
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = vim.api.nvim_create_augroup("GoFormat", {clear=true}),
+  pattern = "*.go",
+  callback = function()
+    vim.cmd("lua vim.lsp.buf.format()")
+  end,
+})
 
 vim.opt.colorcolumn = "80"
 vim.opt.scrolloff = 8

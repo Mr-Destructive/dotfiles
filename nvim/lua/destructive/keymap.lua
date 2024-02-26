@@ -48,8 +48,8 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 --    pre_hook = nil,
 --    post_hook = nil,
 --})
--- vim.keymap.set("v", "<leader>/", function() require('Comment.api').toggle.linewise.current() end,
--- { noremap = true, silent = true })
+ vim.keymap.set("v", "<leader>/", function() require('Comment.api').toggle.linewise.current() end,
+ { noremap = true, silent = true })
 
 --require'FTerm'.setup({
 --    border = 'double',

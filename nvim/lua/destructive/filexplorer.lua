@@ -77,15 +77,15 @@ require("nvim-tree").setup({
           resize_window = false
       }
   },
-  view = {
-    adaptive_size = false,
-    width = 30,
-    mappings = {
-      list = {
-        { key = "u", action = "dir_up" },
-      },
-    },
-  },
+  --view = {
+  --  adaptive_size = false,
+  --  width = 30,
+  --  mappings = {
+  --    list = {
+  --      { key = "u", action = "dir_up" },
+  --    },
+  --  },
+  --},
   renderer = {
     group_empty = true,
   },
